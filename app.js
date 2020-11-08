@@ -55,24 +55,22 @@ app.get('/about', (req, res) => {
 
 
 
-// PLAYER ROUTES
-app.get('/players', (req, res) => {        // Players Index Get Request
+// PLAYERS ROUTES
+app.get('/players', (req, res) => {        // Players Index GET Request
     Player.find().sort({ createdAt: -1 })
         .then(result => {
             res.render('home', { title: "Player Info" , players: result })
         })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(err => console.log(err));
 })
 
 
-app.get('/players/add', (req, res) => {     // Players Add Get Request
+app.get('/players/add', (req, res) => {     // Players Add GET Request
     res.render('addPlayer', { title: "Add a Player" })
 })
 
 
-app.post('/players', (req, res) => {        // Players Add Post Request (players/add kısmında submit yaptıktan sonra /players URL'sine Post request atacak)
+app.post('/players', (req, res) => {        // Players Add POST Request (players/add kısmında submit yaptıktan sonra /players URL'sine Post request atacak)
     console.log(req.body);
 
     const player = new Player(req.body);
@@ -82,9 +80,27 @@ app.post('/players', (req, res) => {        // Players Add Post Request (players
 })
 
 
-app.get('/players/:id', (req, res) => {      // Player Details Get Request
+app.get('/players/:id', (req, res) => {      // Player Details GET Request
     const id = req.params.id;
     console.log(id);
+
+    Player.findById(id)
+        .then(result => {
+            res.render('playerDetails', { title: 'Player Details', player: result });
+        })
+        .catch(err => console.log(err))
+})
+
+
+app.delete('/players/:id', (req, res) => {    // Players Details DELETE Request
+    const id = req.params.id;
+    console.log(id);
+
+    Player.findByIdAndDelete(id)
+        .then(result => {
+            res.json({ redirect: '/players' });
+        })
+        .catch(err => console.log(err));
 })
 
 

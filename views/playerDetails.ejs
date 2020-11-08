@@ -8,16 +8,33 @@
     <%- include('./partials/nav.ejs') %>
 
     <div class="details content">
-        <h1><%=  %></h1>
+        <h1><%= title %></h1>
         <div class="content">
-            <p><%= blog.body %></p>
+            <p>Name: <%= player.name %></p>
+            <p>Age: <%= player.age %></p>
+            <p>Team: <%= player.team %></p>
+            <p>Nationality: <%= player.nationality %></p>
+            <a class="delete" data-doc="<%= player._id %>">               <!-- Delete Request yaparken ihtiyacımız olacak -->
+                <img src="../trashcan.svg" alt="trashcan">
+            </a> 
         </div>
-        <a class="delete" data-doc="<%= blog._id %>">               <!-- Delete Request yaparken ihtiyacımız olacak -->
-            <img src="../trashcan.svg" alt="trashcan">
-        </a>      
     </div>
 
     <%- include('./partials/footer.ejs') %> 
 
+    <script>      // AJAX kullanımı var
+        const trashcan = document.querySelector('a.delete');
+
+        trashcan.addEventListener('click', e => {
+            const endpoint = `/players/${trashcan.dataset.doc}`       // doc, yukarıda delete kısmındaki data-doc'tan geliyor
+
+            fetch(endpoint, {
+                method: 'DELETE'
+            })
+                .then(response => response.json())
+                .then(data => window.location.href = data.redirect)
+                .catch(err => console.log(err))
+        })
+    </script>
 </body>
 </html>
