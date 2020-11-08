@@ -1,0 +1,28 @@
+<html lang="en">
+
+    <%- include('./partials/head.ejs') %> 
+
+<body>
+    
+    <%- include('./partials/nav.ejs') %> 
+
+    <div class="create-blog content">
+        <form action="/players" method="POST">        <!-- Submit'e basınca POST request'le değerleri girdikten sonra /players URL'sine yönlendirir-->
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+            
+            <label for="team">Team:</label>
+            <input type="text" id="team" name="team" required>
+
+            <label for="nationality">Nationality:</label>
+            <input type="text" id="nationality" name="nationality" required>
+            <button>Submit</button>
+        </form>
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>

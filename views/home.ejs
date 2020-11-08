@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <%- include('./partials/head.ejs') %> 
+
+<body>
+    
+    <%- include('./partials/nav.ejs') %>
+
+    <div class="players content">
+        <h2>Football Player List</h2>
+
+        <% if (players.length > 0) { %>
+            <% players.map(player => { %>
+                <a class="single" href="/players/<%= player._id %>">
+                    <h3 class="title"><%= title %></h3>
+                    <p class="name">Name: <%= player.name %></p>
+                    <p class="age">Age: <%= player.age %></p>
+                    <p class="team">Team: <%= player.team %></p>
+                    <p class="nationality">Nationality: <%= player.nationality %> </p><br>
+                </a>
+            <% }) %> 
+        <% } else { %> 
+            <p>There is no info</p>
+        <% } %> 
+    </div>
+
+    <%- include('./partials/footer.ejs') %> 
+
+</body>
+</html>
