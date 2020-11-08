@@ -14,19 +14,20 @@
             <p>Age: <%= player.age %></p>
             <p>Team: <%= player.team %></p>
             <p>Nationality: <%= player.nationality %></p>
-            <a class="delete" data-doc="<%= player._id %>">               <!-- Delete Request yaparken ihtiyacımız olacak -->
-                <img src="../trashcan.svg" alt="trashcan">
+            <a class="delete" data-doc="<%= player._id %>">               <!-- Delete Link -->
+                <img src="../trashcan.svg" alt="trashcan" width="40" height="40">
+                Delete a Player
             </a> 
         </div>
     </div>
 
     <%- include('./partials/footer.ejs') %> 
 
-    <script>      // AJAX kullanımı var
+    <script>     
         const trashcan = document.querySelector('a.delete');
 
         trashcan.addEventListener('click', e => {
-            const endpoint = `/players/${trashcan.dataset.doc}`       // doc, yukarıda delete kısmındaki data-doc'tan geliyor
+            const endpoint = `/players/${trashcan.dataset.doc}`          // NOT: doc, yukarıda delete kısmındaki data-doc'tan geliyor
 
             fetch(endpoint, {
                 method: 'DELETE'
