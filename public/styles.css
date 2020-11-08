@@ -74,11 +74,11 @@ h3 {
   display: block;
   margin: 40px 0;
   padding-left: 30px;
-  border-left: 6px solid crimson;
+  border-left: 6px solid rgb(7, 7, 87);
 }
 
 .players a:hover h3 {
-  color: crimson;
+  color: rgb(7, 7, 87);
 }
 
 /* details styles */
@@ -91,7 +91,7 @@ h3 {
   top: 0;
   right: 0;
   border-radius: 50%;
-  padding: 8px;
+  padding: 10px;
 }
 
 .delete:hover {
@@ -124,7 +124,7 @@ textarea {
 
 .create-blog button {
   margin-top: 20px;
-  background: crimson;
+  background: rgb(7, 7, 87);
   color: white;
   padding: 6px;
   border: 0;
